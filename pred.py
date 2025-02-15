@@ -3,13 +3,11 @@ import torch.nn as nn
 from collections import Counter
 import pickle
 
-# Гиперпараметры
-EMBEDDING_DIM = 128
+EMBEDDING_DIM = 128 # Параметры как при обучении!!!!!!!!
 HIDDEN_DIM = 128
 MODEL_PATH = "sentiment_model.pth"
 
 
-# Определение модели
 class SentimentModel(nn.Module):
     def __init__(self, vocab_size, embedding_dim, hidden_dim, output_dim):
         super(SentimentModel, self).__init__()
@@ -24,7 +22,6 @@ class SentimentModel(nn.Module):
         return output
 
 
-# Функция для предсказания
 def predict(model, text, vocab, device):
     model.eval()
     encoded_text = torch.tensor([vocab.get(word, 0) for word in text.split()], dtype=torch.long).unsqueeze(0).to(device)
@@ -46,5 +43,5 @@ model.eval()
 print("Модель загружена!")
 
 
-text = "Отзыв!"
+text = "Переделывай"
 print(f'Отзыв: "{text}" - {predict(model, text, vocab, device)}')

@@ -9,7 +9,7 @@ import numpy as np
 import utils
 import pickle
 
-# Гиперпараметры
+# ВАЖНО! ПАРАМЕТРЫ! НАСТРОИТЬ!
 EMBEDDING_DIM = 128
 HIDDEN_DIM = 128 # Нейронов в скрытом слое
 NUM_EPOCHS = 30 #Примеров/шагов в обучении
@@ -18,7 +18,6 @@ LEARNING_RATE = 0.001 # На сколько сильно изменяются п
 MODEL_PATH = "sentiment_model.pth"
 
 
-# Подготовка данных
 class ReviewDataset(Dataset):
     def __init__(self, texts, labels, vocab):
         self.texts = [self.encode_text(text, vocab) for text in texts]
@@ -34,7 +33,7 @@ class ReviewDataset(Dataset):
         return self.texts[idx], self.labels[idx]
 
 
-# Определение модели
+# Тип модель
 class SentimentModel(nn.Module):
     def __init__(self, vocab_size, embedding_dim, hidden_dim, output_dim):
         super(SentimentModel, self).__init__()
@@ -48,8 +47,6 @@ class SentimentModel(nn.Module):
         output = self.fc(hidden[-1])
         return output
 
-
-# Функция для обучения модели
 def train_model(model, train_loader, criterion, optimizer):
     model.train()
     for epoch in range(NUM_EPOCHS):
@@ -64,14 +61,13 @@ def train_model(model, train_loader, criterion, optimizer):
             total_loss += loss.item()
         print(f'Epoch {epoch + 1}/{NUM_EPOCHS}, Loss: {total_loss / len(train_loader)}')
 
-    # Сохранение модели
     torch.save(model.state_dict(), MODEL_PATH)
     print("Модель сохранена!")
 
 texts, labels = utils.get_texts()
 print(texts, labels)
 
-# словарь для обучения
+
 words = [word for text in texts for word in text.split()]
 vocab = {word: i + 1 for i, (word, _) in enumerate(Counter(words).items())}
 
