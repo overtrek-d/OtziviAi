@@ -1,6 +1,6 @@
-#Нейронная сеть для анализа отзывов / Neural network for review analysis
+# Нейронная сеть для анализа отзывов / Neural network for review analysis
 
-##Установка / Install
+## Установка / Install
 1. Установка библиотек / Installing libraries
 > pip install torch torchvision torchaudio
 
@@ -8,7 +8,7 @@
 
 > pip install PyYAML
 
-##Использование / Using
+## Использование / Using
 1. Обучение / Learning model
 Подготовь датасет для обучения texts.yml
 Prepare a dataset for training texts.yml
@@ -24,4 +24,4 @@ Write a review in the text variable.
 
 > Run pred.py
 
-##Проект можно использовать с указанием авторства / The project can be used with attribution!
+## Проект можно использовать с указанием авторства / The project can be used with attribution!
