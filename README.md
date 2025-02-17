@@ -6,6 +6,8 @@
 
 > pip install numpy scikit-learn
 
+> pip install PyYAML
+
 ##Использование / Using
 1. Обучение / Learning model
 Подготовь датасет для обучения texts.yml
@@ -21,3 +23,5 @@ Check the settings when using.
 Write a review in the text variable.
 
 > Run pred.py
+
+##Проект можно использовать с указанием авторства / The project can be used with attribution!
