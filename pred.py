@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from collections import Counter
 import pickle
+import yaml
 
 EMBEDDING_DIM = 128 # Параметры как при обучении!!!!!!!!
 HIDDEN_DIM = 128
@@ -42,6 +43,22 @@ model.load_state_dict(torch.load(MODEL_PATH))
 model.eval()
 print("Модель загружена!")
 
-
-text = input("Отзыв: ")
-print(f'Отзыв: "{text}" - {predict(model, text, vocab, device)}')
+mode = int(input("Select the mode of use. 1 - Text. 2 - Yaml File\n[1/2]"))
+if mode == 1:
+    text = input("Text: ")
+    print(f'Отзыв: "{text}" - {predict(model, text, vocab, device)}')
+    exit(0)
+elif mode == 2:
+    try:
+        with open("text.yml", "r") as f:
+            texts = yaml.safe_load(f)
+    except FileNotFoundError:
+        print("File <text.yml> not found!")
+        exit(0)
+    analysis = []
+    for i in texts:
+        ir = predict(model, i, vocab, device)
+        analysis.append([i, ir])
+    with open("analysis.yml", "w") as f:
+        yaml.safe_dump(analysis, f)
+    print("Готово!")
