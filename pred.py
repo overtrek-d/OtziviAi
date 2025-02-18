@@ -43,5 +43,5 @@ model.eval()
 print("Модель загружена!")
 
 
-text = "Переделывай"
+text = input("Отзыв: ")
 print(f'Отзыв: "{text}" - {predict(model, text, vocab, device)}')

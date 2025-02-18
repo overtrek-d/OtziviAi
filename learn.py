@@ -92,3 +92,4 @@ model.load_state_dict(torch.load(MODEL_PATH))
 with open("vocab.pkl", "wb") as f:
     pickle.dump(vocab, f)
 print("Записал словарь!")
+print("Обучил модель!")
