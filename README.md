@@ -24,4 +24,6 @@ Write a review in the text variable.
 
 > Run pred.py
 
-## Проект можно использовать с указанием авторства / The project can be used with attribution!
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
