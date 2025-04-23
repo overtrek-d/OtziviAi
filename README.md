@@ -8,6 +8,8 @@
 
 > pip install PyYAML
 
+> pip install flask
+
 ## Использование / Using
 1. Обучение / Learning model
 Подготовь датасет для обучения texts.yml

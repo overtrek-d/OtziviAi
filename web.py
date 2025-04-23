@@ -3,10 +3,12 @@ import torch
 import torch.nn as nn
 import pickle
 
+from torch.serialization import MAP_LOCATION
+
 app = Flask(__name__)
 
 EMBEDDING_DIM = 128
-HIDDEN_DIM = 128
+HIDDEN_DIM = 1024
 MODEL_PATH = "sentiment_model.pth"
 
 class SentimentModel(nn.Module):
@@ -37,7 +39,7 @@ with open("vocab.pkl", "rb") as f:
     vocab = pickle.load(f)
 
 model = SentimentModel(len(vocab) + 1, EMBEDDING_DIM, HIDDEN_DIM, 2).to(device)
-model.load_state_dict(torch.load(MODEL_PATH))
+model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu")))
 model.eval()
 
 
